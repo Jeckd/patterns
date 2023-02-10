@@ -1,0 +1,15 @@
+/Users/Evgeniy/Sources/patterns/bin/Debug/net6.0/patterns
+/Users/Evgeniy/Sources/patterns/bin/Debug/net6.0/patterns.deps.json
+/Users/Evgeniy/Sources/patterns/bin/Debug/net6.0/patterns.runtimeconfig.json
+/Users/Evgeniy/Sources/patterns/bin/Debug/net6.0/patterns.dll
+/Users/Evgeniy/Sources/patterns/bin/Debug/net6.0/patterns.pdb
+/Users/Evgeniy/Sources/patterns/obj/Debug/net6.0/patterns.csproj.AssemblyReference.cache
+/Users/Evgeniy/Sources/patterns/obj/Debug/net6.0/patterns.GeneratedMSBuildEditorConfig.editorconfig
+/Users/Evgeniy/Sources/patterns/obj/Debug/net6.0/patterns.AssemblyInfoInputs.cache
+/Users/Evgeniy/Sources/patterns/obj/Debug/net6.0/patterns.AssemblyInfo.cs
+/Users/Evgeniy/Sources/patterns/obj/Debug/net6.0/patterns.csproj.CoreCompileInputs.cache
+/Users/Evgeniy/Sources/patterns/obj/Debug/net6.0/patterns.dll
+/Users/Evgeniy/Sources/patterns/obj/Debug/net6.0/refint/patterns.dll
+/Users/Evgeniy/Sources/patterns/obj/Debug/net6.0/patterns.pdb
+/Users/Evgeniy/Sources/patterns/obj/Debug/net6.0/patterns.genruntimeconfig.cache
+/Users/Evgeniy/Sources/patterns/obj/Debug/net6.0/ref/patterns.dll
