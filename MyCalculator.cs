@@ -6,6 +6,7 @@
 */
 using patterns.Application;
 using patterns.BL;
+using patterns.Infractructure;
 using patterns.Infractructure.CalcConsole;
 
 namespace patterns
@@ -15,15 +16,16 @@ namespace patterns
         public static void Run()
         {
             Console.WriteLine("This is Calculator");
-
-            var genericCalc = new GenericCalculator(
-                new ConsoleIO(),
-                new ConsoleIO(),
-                new ConsoleIO()
-             );
+            var consoleIO = new ConsoleIO
+                (
+                    new FloatValidator(),
+                    new OperationValidator(),
+                    new FloatConverter(),
+                    new OperationConverter()
+                );
+            var genericCalc = new GenericCalculator(consoleIO, consoleIO, consoleIO);
 
              genericCalc.Run();
-
         }
     }
 }

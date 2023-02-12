@@ -4,14 +4,14 @@ namespace patterns.Application
 {
     public class GenericCalculator
     {
-        public GenericCalculator(IDataInput<float> dataInput, IDataOutput<float> dataOutput, IErrorOutput errorOutput)
+        public GenericCalculator(IDataInput<float, OperationsEnum> dataInput, IDataOutput<float> dataOutput, IErrorOutput errorOutput)
         {
             Input = dataInput;
             Output = dataOutput;
             Error = errorOutput;
         }
 
-        private readonly IDataInput<float> Input;
+        private readonly IDataInput<float, OperationsEnum> Input;
         private readonly IDataOutput<float> Output;
         private readonly IErrorOutput Error;
 
@@ -21,11 +21,7 @@ namespace patterns.Application
             var b = Input.ReadB();
             var op = Input.ReadOperation();
 
-            var result = Calculator.Calc(a, b, op);
-            if(string.IsNullOrEmpty(result.Message))
-                Output.Write(result);
-            else
-                Error.WriteError(result.Message);
+            Output.Write(Calculator.Calc(a, b, op));
         }
     }
 }

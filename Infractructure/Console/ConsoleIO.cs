@@ -3,35 +3,54 @@ using patterns.Infractructure;
 using System;
 namespace patterns.Infractructure.CalcConsole
 {
-    public class ConsoleIO : IDataInput<float>, IDataOutput<float>, IErrorOutput
+    public class ConsoleIO : IDataInput<float, OperationsEnum>, IDataOutput<float>, IErrorOutput
     {
-        public float ReadA()
+        public ConsoleIO(
+                IValidable<float> floatValidator,
+                IValidable<OperationsEnum> operationsValidator,
+                IConvertable<float> floatConverter,
+                IConvertable<OperationsEnum> operationConverter)
         {
-            Console.Write("A = ");
-            return float.Parse(Console.ReadLine());
+            this.floatValidator = floatValidator;
+            this.floatConverter = floatConverter;
+            this.operationsValidator = operationsValidator;
+            this.operationsConverter = operationConverter;
         }
 
-        public float ReadB()
+        private IValidable<float> floatValidator;
+        private IValidable<OperationsEnum> operationsValidator;
+        private IConvertable<float> floatConverter;
+        private IConvertable<OperationsEnum> operationsConverter;
+
+        private T Read<T>(string varName, IValidable<T> validator, IConvertable<T> converter)
         {
-            Console.Write("B = ");
-            return float.Parse(Console.ReadLine());
+            Console.Write($"{varName} = ");
+            var s = Console.ReadLine();
+
+            while(!validator.Validate(s))
+            {
+                Console.WriteLine("Invalid value entered");
+                Console.Write($"{varName} = ");
+                s = Console.ReadLine();
+            }
+            return converter.Convert(s);
         }
 
-        public OperationsEnum ReadOperation()
-        {
-            Console.Write("Enter operation");
-            var op = Console.ReadLine();
-            OperationsEnum operation = OperationsEnum.UNKNOWN;
-            if (op == "+") operation = OperationsEnum.ADD;
-            else if (op == "-") operation = OperationsEnum.ODD;
-            else if (op == "*") operation = OperationsEnum.MUL;
-            else if (op == "/") operation = OperationsEnum.DIV;
-            return operation;
-        }
+        public float ReadA() => Read("A", this.floatValidator, this.floatConverter);
 
+        public float ReadB() => Read("B", this.floatValidator, this.floatConverter);
+        
+        public OperationsEnum ReadOperation() => Read("Operation: ", this.operationsValidator, this.operationsConverter);
+        
         public void Write(Result<float> result)
         {
-            Console.WriteLine($"Result is {result.Value}");
+            if(string.IsNullOrEmpty(result.Message))
+            {
+                Console.WriteLine($"Result is {result.Value}");
+                return;
+            }
+
+            WriteError(result.Message);
         }
 
         public void WriteError(string errorMessage)
